@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ counter }}
+    {{ $store.state.counter }}
     <button @click="increment">+</button>
     <button @click="decrement">-</button>
     {{ homeData }}
@@ -14,12 +14,18 @@ import {mapState, mapMutations, mapActions} from 'vuex';
 export default {
   name: "Counter",
   computed: {
-    ...mapState(['counter', 'homeData'])
+   // ...mapState(['counter', 'homeData'])
   },
   methods: {
-    ...mapMutations(['increment', 'decrement']),
+    //...mapMutations(['increment', 'decrement']),
     getHome() {
       this.$store.dispatch('getHome');
+    },
+    increment() {
+      this.$store.commit('increment');
+    },
+    decrement() {
+      this.$store.commit('decrement');
     }
   }
 }
