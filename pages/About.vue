@@ -4,7 +4,10 @@
 
 <script>
 export default {
-  name: "About.vue"
+  name: "About.vue",
+  middleware: (ctx) => {
+    console.log("About.vue middleware");
+  }
 }
 </script>
 

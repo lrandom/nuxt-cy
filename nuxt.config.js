@@ -20,7 +20,9 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/axios',
-    '~/plugins/repositories'
+    '~/plugins/repositories',
+    {src: '~/plugins/alert', ssr: false},
+    {src: '~/plugins/v-tooltip', ssr: false},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -47,5 +49,20 @@ export default {
 
   css: [
     '@/assets/css/index.css'
-  ]
+  ],
+
+  serverMiddleware: [
+    '~/serverMiddleware'
+  ],
+
+  router: {
+    //middleware: ['redirectToHome']
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: '/my-home',
+        path: '/my-home',
+        component: resolve(__dirname, 'pages/index.vue')
+      })
+    }
+  }
 }
